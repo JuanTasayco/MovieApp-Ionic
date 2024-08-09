@@ -1,0 +1,12 @@
+<swiper-container #slider [slidesPerView]="2.1" [loop]="false" class="slide" [freeMode]="true" [parallax]="true"
+  [autoplay]="500" [grid]="{'rows':2,'fill': 'rows'}">
+
+  <swiper-slide class="slide-item" *ngFor="let movie of movies; let i =index">
+    <ion-card>
+      <img [src]="movie.poster_path | imgUrl">
+    </ion-card>
+  </swiper-slide>
+
+
+
+</swiper-container>

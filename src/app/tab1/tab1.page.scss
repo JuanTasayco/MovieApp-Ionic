@@ -1,0 +1,40 @@
+.container {
+    width: min(90%, 1560px);
+    margin: 1rem auto;
+
+    &__h2 {
+        margin: 0 .7rem;
+        background-color: #4158D0;
+        background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        background-clip: text;
+        color: transparent;
+        font-size: 1.2rem;
+    }
+
+    &__button {
+        width: 3rem;
+        height: 1rem;
+        font-size: 10px;
+        --background: linear-gradient(19deg, #fd8621 0%, #B721FF 100%);
+        --background-hover: linear-gradient(19deg, #fd8621 0%, #B721FF 100%);
+        --background-active: linear-gradient(19deg, #fd8621 0%, #B721FF 100%);
+        --background-activated: linear-gradient(19deg, #fd8621 0%, #B721FF 100%);
+        --background-focused: linear-gradient(19deg, #fd8621 0%, #B721FF 100%);
+        --background-disabled: #E0E0E0;
+        --border-radius: 8px;
+        --box-shadow: none;
+
+    }
+}
+
+.toolbar {
+    &__title {
+        font-size: 1.5rem;
+        padding: 0px;
+        margin: 0 .4rem;
+        background-color: #4158D0;
+        background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        background-clip: text;
+        color: transparent;
+    }
+}

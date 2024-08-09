@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      MovieApp
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,27 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title class="toolbar__title" size="large" style="margin-bottom:1rem;">Peliculas App</ion-title>
     </ion-toolbar>
   </ion-header>
+  <!--     <swiper-slide class="slide-item">Slide 2</swiper-slide>
+    <swiper-slide class="slide-item">Slide 3</swiper-slide> -->
+  <div class="container">
+    <h2 class="container__h2">Estrenos</h2>
+    <app-slideshow-backdrop [movies]="movies"></app-slideshow-backdrop>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <h2 class="container__h2">Proximamente</h2>
+    <app-slideshow-backdrop [movies]="upcomingMovies"></app-slideshow-backdrop>
+
+    <div class="" style="display:flex;align-items: center;">
+      <h2 class="container__h2">Más Populares</h2>
+      <ion-button class="container__button"><ion-icon name="add-outline"></ion-icon></ion-button>
+    </div>
+
+    <app-slideshow-doble [movies]="topRatedMovies"></app-slideshow-doble>
+    <!--   <app-explore-container name="Tab 1 page"></app-explore-container> -->
+  </div>
+
+  <ion-header></ion-header>
+
 </ion-content>
