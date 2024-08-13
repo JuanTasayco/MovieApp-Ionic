@@ -4,7 +4,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/tab1" (click)="closeModal()"></ion-back-button>
     </ion-buttons>
+    <ion-button (click)="markAsFavorite(movie)" fill="clear" slot="end">
+      <ion-icon slot="icon-only" class="" name="star-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content *ngIf="movie">
@@ -75,7 +79,5 @@
 
     </swiper-container>
   </ion-grid>
-
-
 
 </ion-content>

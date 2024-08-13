@@ -39,11 +39,20 @@ export class StorageService {
 
   async setMovies(key: nameStorage, values: Result[]) {
     await this._storage?.set(key, values);
-    this.loadData();
+    await this.loadData();
   }
 
   getMovie(key: nameStorage): Observable<Result[]> {
     return this.storageSubjet.asObservable().pipe(map((result) => result[key]));
+  }
+
+  async validateFavoriteMovie(movie: Result) {
+    if (!!this.favorites.find((result) => result.id == movie.id)) {
+      const newArray = this.favorites.filter((localMovie) => localMovie.id !== movie.id);
+      this.setMovies('favorites', newArray);
+    } else {
+      this.setMovies('favorites', [...this.favorites, movie]);
+    }
   }
 
 }

@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MoviesService } from 'src/app/services/movies.service';
-import { ActorsMovie, MovieDetail } from 'src/app/shared/interfaces/moviedb.interfaces';
+import { StorageService } from 'src/app/services/storage.service';
+import { ActorsMovie, MovieDetail, Result } from 'src/app/shared/interfaces/moviedb.interfaces';
 
 @Component({
   selector: 'app-movie-detail',
@@ -51,7 +52,16 @@ export class MovieDetailComponent implements OnInit {
   }
 
 
-  constructor(private movieService: MoviesService, private modalCtrl: ModalController) { }
+  markAsFavorite(movie: any) {
+    const newMovie = movie as Result;
+    this.storage.validateFavoriteMovie(newMovie);
+  }
+
+  constructor(
+    private movieService: MoviesService,
+    private modalCtrl: ModalController,
+    private storage: StorageService
+  ) { }
 
 
 }
