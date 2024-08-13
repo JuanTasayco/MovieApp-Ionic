@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DBResponse } from '../shared/interfaces/moviedb.interfaces';
+import { ActorsMovie, DBResponse, MovieDetail } from '../shared/interfaces/moviedb.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,38 @@ export class MoviesService {
     return this.httpClient.get<DBResponse>(`${this.urlMovieAPI}movie/upcoming`);
   }
 
-  getTopRatedMovies(): Observable<DBResponse> {
-    return this.httpClient.get<DBResponse>(`${this.urlMovieAPI}movie/top_rated`)
+  getTopRatedMovies(page: number): Observable<DBResponse> {
+    return this.httpClient.get<DBResponse>(`${this.urlMovieAPI}movie/top_rated`, {
+      params: {
+        page
+      }
+    })
+  }
+
+  getMovieDetailByID(id: string): Observable<MovieDetail> {
+    return this.httpClient.get<MovieDetail>(`${this.urlMovieAPI}movie/${id}`, {
+      params: {
+        language: 'es-PE'
+      }
+    })
+  }
+
+  getActorsByMovieID(id: string): Observable<ActorsMovie> {
+    return this.httpClient.get<ActorsMovie>(`${this.urlMovieAPI}movie/${id}/credits`, {
+      params: {
+        language: 'es-PE'
+      }
+    })
+  }
+
+  searchMovie(query: string, page: number = 1): Observable<DBResponse> {
+    return this.httpClient.get<DBResponse>(`${this.urlMovieAPI}search/movie`, {
+      params: {
+        query,
+        page,
+        language: 'es-PE'
+      }
+    })
   }
 
 }

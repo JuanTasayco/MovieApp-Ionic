@@ -1,0 +1,23 @@
+.search {
+
+    &__section {
+        display: flex;
+
+        &--start {
+            justify-content: start;
+        }
+
+        &--center {
+            justify-content: center;
+        }
+
+        &--end {
+            justify-content: end;
+        }
+    }
+
+    &__spinner {
+        margin: auto;
+        --color: #54dc98;
+    }
+}

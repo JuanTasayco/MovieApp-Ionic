@@ -1,9 +1,11 @@
 <swiper-container #slider [slidesPerView]="2.1" [loop]="false" class="slide" [freeMode]="true">
 
   <swiper-slide class="slide-item" *ngFor="let movie of movies; let i =index">
-    <ion-card>
+    <ion-card (click)="openModalMovie(movie)">
       <!--        <ion-card-header></ion-card-header>
     <ion-card-subtitle></ion-card-subtitle> -->
       <img [src]="movie.poster_path | imgUrl">
     </ion-card>
-  </swiper-slide></swiper-container>
+  </swiper-slide>
+
+</swiper-container>

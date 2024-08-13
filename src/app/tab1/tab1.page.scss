@@ -38,3 +38,12 @@
         color: transparent;
     }
 }
+
+@media(min-width:964px) {
+    .container {
+        &__h2 {
+            font-size: 2rem;
+
+        }
+    }
+}

@@ -4,13 +4,15 @@ import { SlideshowBackdropComponent } from './slideshow-backdrop/slideshow-backd
 import { IonicModule } from '@ionic/angular';
 import { ImgUrlPipe } from '../shared/pipes/img-url.pipe';
 import { SlideshowDobleComponent } from './slideshow-doble/slideshow-doble.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 
 
 @NgModule({
   declarations: [
     SlideshowBackdropComponent,
-    SlideshowDobleComponent
+    SlideshowDobleComponent,
+    MovieDetailComponent
   ],
   imports: [
     CommonModule,

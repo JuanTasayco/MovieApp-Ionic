@@ -6,13 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ImgUrlPipe implements PipeTransform {
 
-  transform(path: string): string {
+  transform(path: string | undefined | null): string {
 
     const url: string = 'https://image.tmdb.org/t/p/w500';
 
     if (path) return `${url}${path}`;
 
-    return '';
+    return 'assets/notImage.jpg';
   }
 
 }

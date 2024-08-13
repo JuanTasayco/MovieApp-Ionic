@@ -23,13 +23,18 @@
 
     <div class="" style="display:flex;align-items: center;">
       <h2 class="container__h2">Más Populares</h2>
-      <ion-button class="container__button"><ion-icon name="add-outline"></ion-icon></ion-button>
+      <ion-button [disabled]="pageCurrentTopRatedMovies===1" class="container__button"
+        (click)="changetopRated('rest')"><ion-icon name="remove-outline"></ion-icon></ion-button>
+
+      <ion-button [disabled]="pageCurrentTopRatedMovies===6" class="container__button"
+        (click)="changetopRated('more')"><ion-icon name="add-outline"></ion-icon></ion-button>
     </div>
 
     <app-slideshow-doble [movies]="topRatedMovies"></app-slideshow-doble>
+
+    <!--  <ng-container #containerDouble></ng-container> -->
     <!--   <app-explore-container name="Tab 1 page"></app-explore-container> -->
   </div>
-
-  <ion-header></ion-header>
-
 </ion-content>
+
+<ion-footer></ion-footer>

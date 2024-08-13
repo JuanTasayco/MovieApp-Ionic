@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title slot=""> {{movie?.title}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" (click)="closeModal()"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="movie">
+  <!--   <ion-label class="titulo">
+    <h1>{{movie?.title}}</h1>
+  </ion-label> -->
+
+  <img [src]="movie.backdrop_path | imgUrl" *ngIf="movie?.backdrop_path;else notBackground">
+  <ng-template #notBackground>
+    <img src="assets/random.avif">
+  </ng-template>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" class="poster-detalle-sobre">
+        <img [src]="movie.poster_path | imgUrl" class="poster">
+      </ion-col>
+
+      <ion-col size="8">
+        <ion-item style="border-radius: .2rem;">
+          <ion-icon slot="start" name="thumbs-up-outline" color="primary"></ion-icon>
+          <ion-label>Rating</ion-label>
+          <ion-note slot="end" color="primary">{{movie.vote_average}}</ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="people-outline" color="primary"></ion-icon>
+          <ion-label>Votos</ion-label>
+          <ion-note slot="end" color="primary">{{movie.vote_count}}</ion-note>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label>{{descriptionMovie}}</ion-label>
+        <ion-label color="primary" (click)="openMoreText()">{{statusTextReadMore}}</ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-chip *ngFor="let type of movie?.genres" color="secondary">{{type.name}}</ion-chip>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="actorsMovie?.cast">
+    <h2 class="container__h2">Actores</h2>
+    <swiper-container #slider [slidesPerView]="2.5" [loop]="false" class="slide" [freeMode]="true">
+
+      <swiper-slide class="slide-item" *ngFor="let actor of actorsMovie?.cast; let i =index">
+        <ion-card color="transparent">
+          <img [src]="actor?.profile_path | imgUrl" *ngIf="actor?.profile_path">
+          <ion-card-subtitle style="margin:auto;">{{actor.name}}</ion-card-subtitle>
+        </ion-card>
+      </swiper-slide>
+
+    </swiper-container>
+  </ion-grid>
+
+  <ion-grid *ngIf="actorsMovie?.crew">
+    <h2 class="container__h2">Dirección</h2>
+    <swiper-container #slider [slidesPerView]="2.5" [loop]="false" class="slide" [freeMode]="true">
+
+      <swiper-slide class="slide-item" *ngFor="let actor of actorsMovie?.crew; let i =index">
+        <ion-card color="transparent">
+          <img [src]="actor?.profile_path | imgUrl">
+          <ion-card-subtitle style="margin:auto;">{{actor.name}}</ion-card-subtitle>
+        </ion-card>
+      </swiper-slide>
+
+    </swiper-container>
+  </ion-grid>
+
+
+
+</ion-content>
