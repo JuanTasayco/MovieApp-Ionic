@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { ImgUrlPipe } from '../shared/pipes/img-url.pipe';
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ImgUrlPipe } from '../shared/pipes/img-url.pipe';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    ImgUrlPipe
+    ImgUrlPipe,
+    ComponentsModule
   ],
   declarations: [Tab2Page]
 })

@@ -24,7 +24,6 @@ export class MovieDetailComponent implements OnInit {
   getMovie() {
     this.movieService.getMovieDetailByID(this.movieId).subscribe(response => {
       this.movie = response;
-      console.log(this.movie)
       this.openMoreText();
     })
   }

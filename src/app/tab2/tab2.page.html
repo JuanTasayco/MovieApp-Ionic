@@ -8,7 +8,8 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-searchbar #searchBar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+  <ion-searchbar #searchBar [debounce]="1000" (ionInput)="handleInput($event)"
+    (ionClear)="cancelInput($event)"></ion-searchbar>
 
   <div class="search__section" *ngIf="resultsMovie">
     <ion-spinner *ngIf="isLoadingData" class="search__spinner"></ion-spinner>
@@ -20,6 +21,22 @@
         {{movie.title}}</ion-item>
     </ion-list>
   </div>
+
+  <div *ngIf="resultsInStorage">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size="6" *ngFor="let results of resultsInStorage">
+          <ion-card>
+            <img [src]="results.poster_path | imgUrl">
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </div>
+
   <!--   <ion-grid>
     <ion-row *ngIf="resultsMovie">
       <ion-col size="6">

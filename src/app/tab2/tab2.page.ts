@@ -3,6 +3,7 @@ import { IonSearchbar, LoadingController, ModalController, ToastController } fro
 import { MoviesService } from '../services/movies.service';
 import { Result } from '../shared/interfaces/moviedb.interfaces';
 import { MovieDetailComponent } from '../components/movie-detail/movie-detail.component';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-tab2',
@@ -15,29 +16,37 @@ export class Tab2Page implements OnInit {
   resultsMovie: Result[] | null = null;
   isMovieExist: boolean = false;
   noExistResults: boolean = false;
-
+  resultsInStorage: Result[] | null = null;
   ngOnInit(): void {
-    console.log('')
+    this.getElementsStorage();
   }
 
   currentPage: number = 1;
   handleInput(event: CustomEvent) {
-    this.isLoadingData = true;
-    const currentText = event.detail.value as string;
-    this.movieService.searchMovie(currentText, this.currentPage).subscribe({
-      next: (response) => {
-        this.resultsMovie = structuredClone(response.results).slice(0, 5);
-        if (this.resultsMovie.length === 0) {
-          this.noExistResults = true;
-          this.generateToast();
+    if (event.detail.value.length > 0) {
+      this.isLoadingData = true;
+      const currentText = event.detail.value as string;
+      this.movieService.searchMovie(currentText, this.currentPage).subscribe({
+        next: (response) => {
+          this.resultsMovie = structuredClone(response.results).slice(0, 5);
+          this.storage.setMovies('searched', this.resultsMovie);
+          this.getElementsStorage();
+          if (this.resultsMovie.length === 0) {
+            this.noExistResults = true;
+            this.generateToast();
+          }
+        },
+        complete: () => {
+          this.isLoadingData = false;
         }
-      },
-      complete: () => {
-        this.isLoadingData = false;
-      }
-    })
+      })
+    }
   }
-  /* https://www.mercadolibre.com.pe/juego-de-olla-roca-volcanica-antiadherente-9pcs-100-ecolog-color-negro/p/MPE36193608#reco_item_pos=0&reco_backend=best-seller&reco_backend_type=low_level&reco_client=highlights-rankings&reco_id=1390cc0b-4310-4648-968f-753d46feaebe */
+
+  cancelInput(event: any) {
+    this.resultsMovie = null;
+  }
+
   async generateLoading() {
     const loading = await this.loadingCtr.create(
       {
@@ -59,7 +68,6 @@ export class Tab2Page implements OnInit {
     /*    this.searchBar.nativeElement.value = ""; */
   }
 
-
   async selectMovie(movieId: number) {
     const modal = await this.modalCtrl.create(
       {
@@ -72,10 +80,19 @@ export class Tab2Page implements OnInit {
     modal.present();
   }
 
+  getElementsStorage() {
+    console.log('ejecutando')
+    this.storage.getMovie('searched').subscribe(response => {
+      this.resultsInStorage = response;
+    });
+  }
+
   constructor(
     private movieService: MoviesService,
     private loadingCtr: LoadingController,
     private toasCtrl: ToastController,
-    private modalCtrl: ModalController) { }
+    private modalCtrl: ModalController,
+    private storage: StorageService
+  ) { }
 
 }
