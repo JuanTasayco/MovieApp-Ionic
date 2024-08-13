@@ -52,10 +52,6 @@ export class MovieDetailComponent implements OnInit {
   }
 
 
-  searchMovie(query: any) {
-
-  }
-
   constructor(private movieService: MoviesService, private modalCtrl: ModalController) { }
 
 

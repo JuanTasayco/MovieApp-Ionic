@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IonSearchbar, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { MoviesService } from '../services/movies.service';
 import { Result } from '../shared/interfaces/moviedb.interfaces';
@@ -16,9 +16,9 @@ export class Tab2Page implements OnInit {
   isMovieExist: boolean = false;
   noExistResults: boolean = false;
 
-  ngOnInit(): void { }
-
-
+  ngOnInit(): void {
+    console.log('')
+  }
 
   currentPage: number = 1;
   handleInput(event: CustomEvent) {
@@ -37,7 +37,7 @@ export class Tab2Page implements OnInit {
       }
     })
   }
-
+  /* https://www.mercadolibre.com.pe/juego-de-olla-roca-volcanica-antiadherente-9pcs-100-ecolog-color-negro/p/MPE36193608#reco_item_pos=0&reco_backend=best-seller&reco_backend_type=low_level&reco_client=highlights-rankings&reco_id=1390cc0b-4310-4648-968f-753d46feaebe */
   async generateLoading() {
     const loading = await this.loadingCtr.create(
       {
@@ -47,6 +47,7 @@ export class Tab2Page implements OnInit {
     loading.present();
   }
 
+
   async generateToast() {
     const toast = await this.toasCtrl.create({
       message: 'No se encontraron resultados',
@@ -55,7 +56,9 @@ export class Tab2Page implements OnInit {
     })
 
     toast.present();
+    /*    this.searchBar.nativeElement.value = ""; */
   }
+
 
   async selectMovie(movieId: number) {
     const modal = await this.modalCtrl.create(

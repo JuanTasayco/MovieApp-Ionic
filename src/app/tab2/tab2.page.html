@@ -8,17 +8,18 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+  <ion-searchbar #searchBar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
 
   <div class="search__section" *ngIf="resultsMovie">
     <ion-spinner *ngIf="isLoadingData" class="search__spinner"></ion-spinner>
   </div>
 
-  <ion-list lines="none" *ngIf="resultsMovie">
-    <ion-item *ngFor="let movie of resultsMovie" class="ion-text-capitalize" (click)="selectMovie(movie.id)">
-      {{movie.title}}</ion-item>
-  </ion-list>
-
+  <div *ngIf="resultsMovie">
+    <ion-list lines="none" *ngIf="resultsMovie.length>0">
+      <ion-item *ngFor="let movie of resultsMovie" class="ion-text-capitalize" (click)="selectMovie(movie.id)">
+        {{movie.title}}</ion-item>
+    </ion-list>
+  </div>
   <!--   <ion-grid>
     <ion-row *ngIf="resultsMovie">
       <ion-col size="6">
