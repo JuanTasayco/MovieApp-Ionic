@@ -21,6 +21,8 @@ export interface Result {
     video: boolean;
     vote_average: number;
     vote_count: number;
+    homepage?: string;
+    genres?: any;
 }
 
 export enum OriginalLanguage {

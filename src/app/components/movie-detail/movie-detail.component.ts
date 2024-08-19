@@ -43,7 +43,6 @@ export class MovieDetailComponent implements OnInit {
   getActorsMovie() {
     this.movieService.getActorsByMovieID(this.movieId).subscribe(response => {
       this.actorsMovie = response;
-      console.log(this.actorsMovie)
     })
   }
 
