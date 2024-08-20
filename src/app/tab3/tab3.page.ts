@@ -29,7 +29,6 @@ export class Tab3Page implements OnInit {
           }
         })
       }
-      console.log(this.generos)
     });
   }
 

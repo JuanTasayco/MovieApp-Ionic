@@ -9,7 +9,7 @@ import { MovieDetailComponent } from '../movie-detail/movie-detail.component';
   styleUrls: ['./slideshow-backdrop.component.scss'],
 })
 export class SlideshowBackdropComponent {
-  @Input() movies: Result[] = [];
+  @Input({ required: true }) movies: Result[] = [];
   isCloseModal: boolean = false;
   constructor(private modalCtr: ModalController) { }
   /*   async ngOnInit() {

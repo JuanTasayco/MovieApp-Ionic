@@ -2,7 +2,7 @@
   [autoplay]="500" [grid]="{'rows':2,'fill': 'rows'}">
 
   <swiper-slide class="slide-item" *ngFor="let movie of movies; let i =index">
-    <ion-card>
+    <ion-card (click)="openModalMenu(movie)">
       <img [src]="movie.poster_path | imgUrl">
     </ion-card>
   </swiper-slide>
