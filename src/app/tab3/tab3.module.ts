@@ -7,6 +7,8 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 import { ImgUrlPipe } from '../shared/pipes/img-url.pipe';
+import { ComponentsModule } from '../components/components.module';
+import { RemoveUnknowPipe } from '../shared/pipes/remove-unknow.pipe';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { ImgUrlPipe } from '../shared/pipes/img-url.pipe';
     FormsModule,
     ExploreContainerComponentModule,
     Tab3PageRoutingModule,
-    ImgUrlPipe
+    ImgUrlPipe,
+    ComponentsModule,
+    RemoveUnknowPipe
   ],
   declarations: [Tab3Page]
 })

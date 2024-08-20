@@ -16,10 +16,9 @@
   <!--   <app-explore-container name="Tab 3 page"></app-explore-container> -->
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let movie of favoritesMovies">
-        <ion-card>
-          <img [src]="movie?.poster_path | imgUrl">
-        </ion-card>
+      <ion-col size="12" *ngFor="let movie of generos | keyvalue">
+        <ion-title class="" style="font-size:19.2px"> {{movie.key}}</ion-title>
+       <app-slideshow-backdrop [movies]="movie.value | removeUnknow"></app-slideshow-backdrop>
       </ion-col>
     </ion-row>
   </ion-grid>

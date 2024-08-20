@@ -17,18 +17,18 @@ export class Tab3Page implements OnInit {
   ngOnInit(): void {
     this.storage.getMovie('favorites').subscribe(response => {
       this.favoritesMovies = response;
+      console.log(this.favoritesMovies)
       if (this.favoritesMovies) {
         this.favoritesMovies.forEach(movie => {
           for (let gen of movie.genres) {
             if (!this.generos[gen.name]) {
               this.generos[gen.name] = []
-            } else {
-              this.generos[gen.name].push(movie)
             }
-
+            this.generos[gen.name].push(movie)
           }
         })
       }
+      console.log(this.generos);
     });
   }
 
